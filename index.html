@@ -42,10 +42,10 @@
             --nmc-red: #DC2626;
             --nmc-red-light: #FEF2F2;
 
-            --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
             --radius: 8px;
             --radius-lg: 12px;
 
@@ -55,7 +55,11 @@
             --twin-redev: #8C6F37;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -66,7 +70,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        #app { display: flex; height: 100vh; flex-direction: column; }
+        #app {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
 
         /* ============================================================
            TOP BAR — Version / Date / Actions
@@ -78,16 +86,26 @@
             padding: 0 20px;
             height: 36px;
             background: var(--nmc-navy);
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 11px;
             letter-spacing: 0.3px;
             flex-shrink: 0;
         }
 
-        .topbar-left { display: flex; align-items: center; gap: 16px; }
-        .topbar-left span { display: flex; align-items: center; gap: 5px; }
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar-left span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .topbar-left .version-badge {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             padding: 2px 8px;
             border-radius: 3px;
             font-family: 'Space Mono', monospace;
@@ -95,14 +113,18 @@
             color: var(--nmc-gold-light);
         }
 
-        .topbar-right { display: flex; align-items: center; gap: 6px; }
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
         .topbar-btn {
             padding: 4px 12px;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 4px;
             background: transparent;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 11px;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
@@ -111,13 +133,26 @@
             align-items: center;
             gap: 5px;
         }
-        .topbar-btn:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); }
-        .topbar-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+        .topbar-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .topbar-btn svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
 
         /* ============================================================
            MAIN CONTENT AREA
            ============================================================ */
-        #main { display: flex; flex: 1; overflow: hidden; }
+        #main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
 
         /* ============================================================
            SIDEBAR
@@ -138,14 +173,27 @@
             color: white;
         }
 
-        .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
-        .brand-logo { width: 32px; height: 32px; border-radius: 5px; object-fit: contain; }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2px;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
+
         .brand h1 {
             font-family: 'Instrument Serif', Georgia, serif;
             font-size: 20px;
             font-weight: 400;
             letter-spacing: 0.2px;
         }
+
         .brand-sub {
             font-size: 10px;
             opacity: 0.5;
@@ -157,7 +205,11 @@
         }
 
         /* Tab Navigation */
-        .tab-nav { display: flex; margin-top: 12px; gap: 0; }
+        .tab-nav {
+            display: flex;
+            margin-top: 12px;
+            gap: 0;
+        }
 
         .tab-btn {
             flex: 1;
@@ -169,8 +221,8 @@
             text-transform: uppercase;
             cursor: pointer;
             border: none;
-            background: rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
             transition: all 0.25s;
             font-family: 'DM Sans', sans-serif;
             border-bottom: 2px solid transparent;
@@ -179,15 +231,30 @@
             justify-content: center;
             gap: 5px;
         }
-        .tab-btn:hover { color: rgba(255,255,255,0.75); }
-        .tab-btn.active { color: white; background: rgba(255,255,255,0.08); border-bottom-color: var(--nmc-gold-light); }
-        .tab-icon { width: 12px; height: 12px; fill: currentColor; opacity: 0.85; }
+
+        .tab-btn:hover {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .tab-btn.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border-bottom-color: var(--nmc-gold-light);
+        }
+
+        .tab-icon {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            opacity: 0.85;
+        }
 
         /* Property Selector */
         #property-selector-wrap {
             padding: 8px 20px 10px;
-            background: rgba(0,0,0,0.12);
+            background: rgba(0, 0, 0, 0.12);
         }
+
         #property-selector-wrap label {
             display: block;
             font-size: 9px;
@@ -197,12 +264,13 @@
             margin-bottom: 4px;
             color: white;
         }
+
         #property-selector {
             width: 100%;
             padding: 6px 10px;
             border-radius: 5px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
             color: white;
             font-family: 'DM Sans', sans-serif;
             font-size: 12px;
@@ -213,23 +281,37 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
         }
-        #property-selector option { background: var(--nmc-blue); color: white; }
+
+        #property-selector option {
+            background: var(--nmc-blue);
+            color: white;
+        }
 
         /* Stats Bar */
-        #stats-bar { display: flex; gap: 0; overflow: hidden; }
+        #stats-bar {
+            display: flex;
+            gap: 0;
+            overflow: hidden;
+        }
+
         .stat-cell {
             flex: 1;
             padding: 10px 8px;
             text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.06);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .stat-cell:last-child { border-right: none; }
+
+        .stat-cell:last-child {
+            border-right: none;
+        }
+
         .stat-val {
             font-size: 18px;
             font-weight: 700;
             color: var(--nmc-gold-light);
             font-family: 'Space Mono', monospace;
         }
+
         .stat-label {
             font-size: 9px;
             text-transform: uppercase;
@@ -263,8 +345,17 @@
             transition: all 0.2s;
             font-family: 'DM Sans', sans-serif;
         }
-        .filter-btn:hover { border-color: var(--nmc-blue); color: var(--nmc-blue); }
-        .filter-btn.active { background: var(--nmc-blue); color: white; border-color: var(--nmc-blue); }
+
+        .filter-btn:hover {
+            border-color: var(--nmc-blue);
+            color: var(--nmc-blue);
+        }
+
+        .filter-btn.active {
+            background: var(--nmc-blue);
+            color: white;
+            border-color: var(--nmc-blue);
+        }
 
         /* Score Slider */
         .slider-wrap {
@@ -274,6 +365,7 @@
             gap: 8px;
             margin-top: 4px;
         }
+
         .slider-label {
             font-size: 10px;
             font-weight: 600;
@@ -281,6 +373,7 @@
             white-space: nowrap;
             min-width: 75px;
         }
+
         .slider-value {
             font-family: 'Space Mono', monospace;
             font-weight: 700;
@@ -292,6 +385,7 @@
             padding: 2px 6px;
             border-radius: 3px;
         }
+
         #score-slider {
             flex: 1;
             -webkit-appearance: none;
@@ -300,22 +394,27 @@
             background: linear-gradient(to right, var(--nmc-green), var(--nmc-teal), var(--nmc-amber));
             outline: none;
         }
+
         #score-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--nmc-blue);
             border: 2px solid white;
             cursor: pointer;
             box-shadow: var(--shadow-sm);
         }
+
         #score-slider::-moz-range-thumb {
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: var(--nmc-blue);
             border: 2px solid white;
             cursor: pointer;
         }
+
         .slider-count {
             font-size: 10px;
             color: var(--nmc-secondary);
@@ -330,8 +429,15 @@
             overflow-y: auto;
             padding: 10px 14px;
         }
-        #market-list::-webkit-scrollbar { width: 4px; }
-        #market-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+
+        #market-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #market-list::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
 
         .market-card {
             background: white;
@@ -343,13 +449,15 @@
             transition: all 0.2s ease;
             position: relative;
         }
+
         .market-card:hover {
             border-color: var(--nmc-blue);
             box-shadow: var(--shadow-md);
         }
+
         .market-card.active {
             border-color: var(--nmc-blue);
-            box-shadow: 0 0 0 2px rgba(0,71,133,0.1), var(--shadow-md);
+            box-shadow: 0 0 0 2px rgba(0, 71, 133, 0.1), var(--shadow-md);
         }
 
         .card-top {
@@ -358,6 +466,7 @@
             align-items: flex-start;
             margin-bottom: 6px;
         }
+
         .card-name {
             font-size: 13px;
             font-weight: 600;
@@ -366,11 +475,13 @@
             flex: 1;
             padding-right: 10px;
         }
+
         .card-location {
             font-size: 10px;
             color: var(--nmc-secondary);
             margin-top: 2px;
         }
+
         .score-badge {
             padding: 3px 8px;
             border-radius: 4px;
@@ -380,9 +491,21 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-        .score-prime { background: var(--nmc-green-light); color: var(--nmc-green); }
-        .score-strong { background: var(--nmc-amber-light); color: var(--nmc-amber); }
-        .score-emerging { background: var(--nmc-lighter); color: var(--nmc-secondary); }
+
+        .score-prime {
+            background: var(--nmc-green-light);
+            color: var(--nmc-green);
+        }
+
+        .score-strong {
+            background: var(--nmc-amber-light);
+            color: var(--nmc-amber);
+        }
+
+        .score-emerging {
+            background: var(--nmc-lighter);
+            color: var(--nmc-secondary);
+        }
 
         .tier-label {
             font-size: 9px;
@@ -394,9 +517,21 @@
             padding: 2px 6px;
             border-radius: 3px;
         }
-        .tier-prime { background: var(--nmc-green-light); color: var(--nmc-green); }
-        .tier-strong { background: var(--nmc-amber-light); color: var(--nmc-amber); }
-        .tier-emerging { background: var(--nmc-lighter); color: var(--nmc-secondary); }
+
+        .tier-prime {
+            background: var(--nmc-green-light);
+            color: var(--nmc-green);
+        }
+
+        .tier-strong {
+            background: var(--nmc-amber-light);
+            color: var(--nmc-amber);
+        }
+
+        .tier-emerging {
+            background: var(--nmc-lighter);
+            color: var(--nmc-secondary);
+        }
 
         .card-metrics {
             display: grid;
@@ -404,18 +539,21 @@
             gap: 6px;
             margin: 8px 0;
         }
+
         .metric-cell {
             text-align: center;
             padding: 5px 3px;
             background: var(--nmc-light);
             border-radius: 5px;
         }
+
         .metric-val {
             font-size: 12px;
             font-weight: 700;
             color: var(--nmc-text);
             font-family: 'Space Mono', monospace;
         }
+
         .metric-key {
             font-size: 8px;
             text-transform: uppercase;
@@ -429,6 +567,7 @@
             line-height: 1.5;
             color: var(--nmc-slate);
         }
+
         .card-anchors {
             margin-top: 6px;
             padding-top: 6px;
@@ -449,7 +588,12 @@
             font-weight: 600;
             margin-bottom: 5px;
         }
-        .twin-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+        .twin-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
 
         /* Zone badges */
         .zone-size-badge {
@@ -462,13 +606,39 @@
             letter-spacing: 0.5px;
             margin-bottom: 5px;
         }
-        .zone-mega { background: var(--nmc-red-light); color: var(--nmc-red); }
-        .zone-large { background: #FFF7ED; color: #C2410C; }
-        .zone-medium { background: var(--nmc-green-light); color: var(--nmc-green); }
-        .zone-micro { background: var(--nmc-lighter); color: var(--nmc-secondary); }
-        .zone-solo { background: #F1F5F9; color: #64748B; }
 
-        .zone-tracts { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+        .zone-mega {
+            background: var(--nmc-red-light);
+            color: var(--nmc-red);
+        }
+
+        .zone-large {
+            background: #FFF7ED;
+            color: #C2410C;
+        }
+
+        .zone-medium {
+            background: var(--nmc-green-light);
+            color: var(--nmc-green);
+        }
+
+        .zone-micro {
+            background: var(--nmc-lighter);
+            color: var(--nmc-secondary);
+        }
+
+        .zone-solo {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .zone-tracts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 5px;
+        }
+
         .zone-tract-pill {
             background: var(--nmc-lighter);
             padding: 1px 6px;
@@ -477,6 +647,7 @@
             color: var(--nmc-secondary);
             font-family: 'Space Mono', monospace;
         }
+
         .zone-pop-label {
             font-family: 'Space Mono', monospace;
             font-weight: 700;
@@ -500,8 +671,15 @@
         /* ============================================================
            MAP
            ============================================================ */
-        #map-container { flex: 1; position: relative; }
-        #map { width: 100%; height: 100%; }
+        #map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
 
         /* Popups */
         .leaflet-popup-content-wrapper {
@@ -510,8 +688,15 @@
             overflow: hidden;
             box-shadow: var(--shadow-lg) !important;
         }
-        .leaflet-popup-content { margin: 0 !important; width: 300px !important; }
-        .leaflet-popup-tip { display: none; }
+
+        .leaflet-popup-content {
+            margin: 0 !important;
+            width: 300px !important;
+        }
+
+        .leaflet-popup-tip {
+            display: none;
+        }
 
         .popup-head {
             background: var(--nmc-blue);
@@ -521,34 +706,64 @@
             justify-content: space-between;
             align-items: center;
         }
-        .popup-head-name { font-weight: 600; font-size: 13px; }
+
+        .popup-head-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
         .popup-head-score {
             font-family: 'Space Mono', monospace;
             font-weight: 700;
             font-size: 12px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             padding: 2px 7px;
             border-radius: 3px;
         }
 
-        .popup-body { padding: 12px 14px; }
+        .popup-body {
+            padding: 12px 14px;
+        }
+
         .popup-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6px;
             margin-bottom: 8px;
         }
+
         .popup-stat {
             text-align: center;
             padding: 5px;
             background: var(--nmc-light);
             border-radius: 5px;
         }
-        .popup-stat-val { font-weight: 700; font-size: 13px; color: var(--nmc-text); }
-        .popup-stat-key { font-size: 8px; text-transform: uppercase; color: var(--nmc-secondary); }
 
-        .popup-summary { font-size: 11px; line-height: 1.5; color: var(--nmc-slate); font-style: italic; }
-        .popup-anchors { margin-top: 6px; font-size: 10px; font-weight: 600; color: var(--nmc-blue); }
+        .popup-stat-val {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--nmc-text);
+        }
+
+        .popup-stat-key {
+            font-size: 8px;
+            text-transform: uppercase;
+            color: var(--nmc-secondary);
+        }
+
+        .popup-summary {
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--nmc-slate);
+            font-style: italic;
+        }
+
+        .popup-anchors {
+            margin-top: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--nmc-blue);
+        }
 
         .popup-match-label {
             background: var(--nmc-light);
@@ -561,32 +776,82 @@
         }
 
         /* Z-Score Breakdown */
-        .zscore-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--nmc-border); }
+        .zscore-section {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--nmc-border);
+        }
+
         .zscore-title {
-            font-size: 9px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.5px; color: var(--nmc-blue); margin-bottom: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--nmc-blue);
+            margin-bottom: 6px;
         }
-        .zscore-row { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; font-size: 10px; }
+
+        .zscore-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 3px;
+            font-size: 10px;
+        }
+
         .zscore-label {
-            width: 55px; text-align: right; font-weight: 500; color: var(--nmc-secondary);
-            flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            width: 55px;
+            text-align: right;
+            font-weight: 500;
+            color: var(--nmc-secondary);
+            flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
+
         .zscore-bar-wrap {
-            flex: 1; height: 8px; background: var(--nmc-lighter);
-            border-radius: 4px; position: relative; overflow: hidden;
+            flex: 1;
+            height: 8px;
+            background: var(--nmc-lighter);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
         }
+
         .zscore-bar-center {
-            position: absolute; left: 50%; top: 0; bottom: 0;
-            width: 1px; background: var(--nmc-border);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--nmc-border);
         }
+
         .zscore-bar {
-            position: absolute; top: 1px; height: 6px; border-radius: 3px; transition: width 0.3s ease;
+            position: absolute;
+            top: 1px;
+            height: 6px;
+            border-radius: 3px;
+            transition: width 0.3s ease;
         }
-        .zscore-bar.positive { left: 50%; background: var(--nmc-teal); }
-        .zscore-bar.negative { right: 50%; background: var(--nmc-amber); }
+
+        .zscore-bar.positive {
+            left: 50%;
+            background: var(--nmc-teal);
+        }
+
+        .zscore-bar.negative {
+            right: 50%;
+            background: var(--nmc-amber);
+        }
+
         .zscore-val {
-            width: 32px; font-family: 'Space Mono', monospace;
-            font-size: 9px; font-weight: 600; text-align: left;
+            width: 32px;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            font-weight: 600;
+            text-align: left;
         }
 
         /* Map Overlays */
@@ -601,157 +866,468 @@
             box-shadow: var(--shadow-md);
             font-size: 11px;
         }
+
         .legend-title {
-            font-weight: 700; font-size: 10px; text-transform: uppercase;
-            letter-spacing: 0.5px; margin-bottom: 6px; color: var(--nmc-blue);
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: var(--nmc-blue);
         }
-        .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
         .legend-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            border: 2px solid white; box-shadow: 0 0 2px rgba(0,0,0,0.2);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
         }
 
         .data-source {
-            position: absolute; top: 10px; left: 10px; z-index: 1000;
-            background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
-            padding: 6px 12px; border-radius: 6px; font-size: 10px;
-            color: var(--nmc-secondary); box-shadow: var(--shadow-sm);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            color: var(--nmc-secondary);
+            box-shadow: var(--shadow-sm);
         }
-        .data-source strong { color: var(--nmc-blue); }
+
+        .data-source strong {
+            color: var(--nmc-blue);
+        }
 
         .ca-comparison {
-            position: absolute; top: 10px; right: 10px; z-index: 1000;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
-            padding: 12px 16px; border-radius: var(--radius);
-            box-shadow: var(--shadow-md); width: 220px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            width: 220px;
         }
+
         .ca-title {
-            font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.5px; color: var(--nmc-blue); margin-bottom: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--nmc-blue);
+            margin-bottom: 6px;
         }
-        .ca-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
-        .ca-row span:first-child { color: var(--nmc-secondary); }
-        .ca-row span:last-child { font-weight: 600; color: var(--nmc-text); font-family: 'Space Mono', monospace; font-size: 10px; }
+
+        .ca-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .ca-row span:first-child {
+            color: var(--nmc-secondary);
+        }
+
+        .ca-row span:last-child {
+            font-weight: 600;
+            color: var(--nmc-text);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+        }
 
         /* Heatmap toggle */
         #heatmap-toggle {
-            position: absolute; bottom: 60px; right: 10px; z-index: 600;
-            padding: 5px 12px; border: 1px solid var(--nmc-border);
-            border-radius: 4px; background: rgba(255,255,255,0.92);
-            color: var(--nmc-secondary); font-size: 10px;
-            font-family: 'DM Sans', sans-serif; cursor: pointer;
-            backdrop-filter: blur(4px); transition: all .2s;
+            position: absolute;
+            bottom: 60px;
+            right: 10px;
+            z-index: 600;
+            padding: 5px 12px;
+            border: 1px solid var(--nmc-border);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--nmc-secondary);
+            font-size: 10px;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all .2s;
         }
-        #heatmap-toggle:hover, #heatmap-toggle.active {
-            background: var(--nmc-blue); color: white; border-color: var(--nmc-blue);
+
+        #heatmap-toggle:hover,
+        #heatmap-toggle.active {
+            background: var(--nmc-blue);
+            color: white;
+            border-color: var(--nmc-blue);
         }
 
         /* Loading / Empty */
         .loading {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 200px; color: var(--nmc-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--nmc-secondary);
         }
+
         .loading-spinner {
-            width: 24px; height: 24px;
+            width: 24px;
+            height: 24px;
             border: 2px solid var(--nmc-border);
             border-top-color: var(--nmc-blue);
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
             margin-bottom: 10px;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .empty-state { text-align: center; padding: 40px 20px; color: var(--nmc-secondary); }
-        .empty-state h3 { margin-bottom: 6px; font-size: 15px; }
-        .empty-state p { font-size: 12px; line-height: 1.5; }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--nmc-secondary);
+        }
+
+        .empty-state h3 {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .empty-state p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
 
         /* ============================================================
            METHODOLOGY PANEL — slide-over
            ============================================================ */
         #methodology-overlay {
-            position: fixed; inset: 0; z-index: 9999;
-            display: none; /* toggled by JS */
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            /* toggled by JS */
         }
-        #methodology-overlay.open { display: flex; }
+
+        #methodology-overlay.open {
+            display: flex;
+        }
+
         #methodology-backdrop {
-            position: absolute; inset: 0;
-            background: rgba(0,0,0,0.35);
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(2px);
         }
+
         #methodology-panel {
-            position: absolute; right: 0; top: 0; bottom: 0;
-            width: 520px; max-width: 90vw;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 520px;
+            max-width: 90vw;
             background: white;
-            box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
             overflow-y: auto;
             transform: translateX(100%);
             transition: transform 0.3s ease;
         }
-        #methodology-overlay.open #methodology-panel { transform: translateX(0); }
+
+        #methodology-overlay.open #methodology-panel {
+            transform: translateX(0);
+        }
 
         .meth-header {
-            position: sticky; top: 0; z-index: 1;
+            position: sticky;
+            top: 0;
+            z-index: 1;
             background: var(--nmc-blue);
             color: white;
             padding: 20px 24px;
         }
+
         .meth-header h2 {
             font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 22px; font-weight: 400;
+            font-size: 22px;
+            font-weight: 400;
         }
-        .meth-header p { font-size: 12px; opacity: 0.6; margin-top: 4px; }
-        .meth-close {
-            position: absolute; top: 16px; right: 16px;
-            background: none; border: none; color: white;
-            font-size: 20px; cursor: pointer; opacity: 0.6;
-            width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-        }
-        .meth-close:hover { opacity: 1; }
 
-        .meth-body { padding: 24px; }
+        .meth-header p {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        .meth-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .meth-close:hover {
+            opacity: 1;
+        }
+
+        .meth-body {
+            padding: 24px;
+        }
+
         .meth-body h3 {
-            font-size: 14px; font-weight: 700; color: var(--nmc-blue);
-            margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.5px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--nmc-blue);
+            margin: 20px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .meth-body h3:first-child { margin-top: 0; }
-        .meth-body p { font-size: 13px; line-height: 1.7; color: var(--nmc-slate); margin-bottom: 10px; }
-        .meth-body ul { margin: 8px 0 12px 18px; font-size: 13px; line-height: 1.7; color: var(--nmc-slate); }
-        .meth-body li { margin-bottom: 4px; }
-        .meth-body code {
-            font-family: 'Space Mono', monospace; font-size: 11px;
-            background: var(--nmc-lighter); padding: 1px 5px; border-radius: 3px;
+
+        .meth-body h3:first-child {
+            margin-top: 0;
         }
-        .meth-caveat {
-            background: var(--nmc-amber-light); border-left: 3px solid var(--nmc-amber);
-            padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0;
-            font-size: 12px; line-height: 1.6; color: #92400E;
+
+        .meth-body p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--nmc-slate);
+            margin-bottom: 10px;
         }
-        .meth-caveat strong { color: #78350F; }
-        .meth-table {
-            width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0;
-        }
-        .meth-table th {
-            text-align: left; padding: 6px 10px; background: var(--nmc-lighter);
-            font-weight: 600; color: var(--nmc-blue); font-size: 11px;
-            text-transform: uppercase; letter-spacing: 0.3px;
-        }
-        .meth-table td {
-            padding: 6px 10px; border-bottom: 1px solid var(--nmc-border-light);
+
+        .meth-body ul {
+            margin: 8px 0 12px 18px;
+            font-size: 13px;
+            line-height: 1.7;
             color: var(--nmc-slate);
         }
-        .meth-table code { font-size: 10px; }
+
+        .meth-body li {
+            margin-bottom: 4px;
+        }
+
+        .meth-body code {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            background: var(--nmc-lighter);
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        .meth-caveat {
+            background: var(--nmc-amber-light);
+            border-left: 3px solid var(--nmc-amber);
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #92400E;
+        }
+
+        .meth-caveat strong {
+            color: #78350F;
+        }
+
+        .meth-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+
+        .meth-table th {
+            text-align: left;
+            padding: 6px 10px;
+            background: var(--nmc-lighter);
+            font-weight: 600;
+            color: var(--nmc-blue);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .meth-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--nmc-border-light);
+            color: var(--nmc-slate);
+        }
+
+        .meth-table code {
+            font-size: 10px;
+        }
+
+        /* ============================================================
+           WELCOME MODAL — centered card on first visit
+           ============================================================ */
+        #welcome-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #welcome-overlay.open {
+            display: flex;
+        }
+
+        #welcome-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        #welcome-panel {
+            position: relative;
+            z-index: 1;
+            width: 640px;
+            max-width: 92vw;
+            max-height: 85vh;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #welcome-overlay.open #welcome-panel {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .welcome-header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: var(--nmc-blue);
+            color: white;
+            padding: 24px 28px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .welcome-header h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .welcome-header p {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 6px;
+        }
+
+        .welcome-footer {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 16px 28px;
+            border-top: 1px solid var(--nmc-border-light);
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .welcome-enter {
+            background: var(--nmc-blue);
+            color: white;
+            border: none;
+            padding: 10px 32px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+        }
+
+        .welcome-enter:hover {
+            background: #0A1930;
+        }
+
+        .welcome-hint {
+            font-size: 11px;
+            color: var(--nmc-secondary);
+            margin-top: 8px;
+        }
 
         /* ============================================================
            PRINT STYLES
            ============================================================ */
         @media print {
-            #topbar, #heatmap-toggle, .tab-nav, #filters, .topbar-btn { display: none !important; }
-            #sidebar { width: 100%; min-width: 100%; border: none; }
-            #map-container { display: none; }
-            .market-card { break-inside: avoid; page-break-inside: avoid; }
-            body { overflow: visible; height: auto; }
-            #app, #main { display: block; height: auto; overflow: visible; }
-            #market-list { overflow: visible; height: auto; }
+
+            #topbar,
+            #heatmap-toggle,
+            .tab-nav,
+            #filters,
+            .topbar-btn {
+                display: none !important;
+            }
+
+            #sidebar {
+                width: 100%;
+                min-width: 100%;
+                border: none;
+            }
+
+            #map-container {
+                display: none;
+            }
+
+            .market-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            body {
+                overflow: visible;
+                height: auto;
+            }
+
+            #app,
+            #main {
+                display: block;
+                height: auto;
+                overflow: visible;
+            }
+
+            #market-list {
+                overflow: visible;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -767,11 +1343,16 @@
             </div>
             <div class="topbar-right">
                 <button class="topbar-btn" id="btn-methodology" title="View methodology & data sources">
-                    <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zM6.5 7h3v5.5h-3V7z"/></svg>
+                    <svg viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zM6.5 7h3v5.5h-3V7z" />
+                    </svg>
                     Methodology
                 </button>
                 <button class="topbar-btn" id="btn-export" title="Export filtered data to CSV">
-                    <svg viewBox="0 0 16 16"><path d="M8 1v9m0 0l-3-3m3 3l3-3M2 12v2h12v-2"/></svg>
+                    <svg viewBox="0 0 16 16">
+                        <path d="M8 1v9m0 0l-3-3m3 3l3-3M2 12v2h12v-2" />
+                    </svg>
                     Export CSV
                 </button>
             </div>
@@ -782,22 +1363,32 @@
             <div id="sidebar">
                 <div id="header">
                     <div class="brand">
-                        <img src="nmc-icon.png" alt="NMC" class="brand-logo"
-                             onerror="this.style.display='none'">
+                        <img src="nmc-icon.png" alt="NMC" class="brand-logo" onerror="this.style.display='none'">
                         <h1>Expansion Atlas</h1>
                     </div>
                     <div class="brand-sub">IL · IN · WI · MI · OH · DFW-TX</div>
                     <div class="tab-nav">
                         <button class="tab-btn active" data-tab="demographic">
-                            <svg class="tab-icon" viewBox="0 0 16 16"><rect x="1" y="8" width="3" height="7" rx="0.5"/><rect x="6" y="4" width="3" height="11" rx="0.5"/><rect x="11" y="1" width="3" height="14" rx="0.5"/></svg>
+                            <svg class="tab-icon" viewBox="0 0 16 16">
+                                <rect x="1" y="8" width="3" height="7" rx="0.5" />
+                                <rect x="6" y="4" width="3" height="11" rx="0.5" />
+                                <rect x="11" y="1" width="3" height="14" rx="0.5" />
+                            </svg>
                             Demographics
                         </button>
                         <button class="tab-btn" data-tab="twins">
-                            <svg class="tab-icon" viewBox="0 0 16 16"><circle cx="5" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                            <svg class="tab-icon" viewBox="0 0 16 16">
+                                <circle cx="5" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                                <circle cx="11" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
                             Property Twins
                         </button>
                         <button class="tab-btn" data-tab="hotzones">
-                            <svg class="tab-icon" viewBox="0 0 16 16"><path d="M8 1C5 1 3 4 3 7c0 4 5 8 5 8s5-4 5-8c0-3-2-6-5-6z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="7" r="2" fill="currentColor"/></svg>
+                            <svg class="tab-icon" viewBox="0 0 16 16">
+                                <path d="M8 1C5 1 3 4 3 7c0 4 5 8 5 8s5-4 5-8c0-3-2-6-5-6z" fill="none"
+                                    stroke="currentColor" stroke-width="1.5" />
+                                <circle cx="8" cy="7" r="2" fill="currentColor" />
+                            </svg>
                             Hot Zones
                         </button>
                     </div>
@@ -808,21 +1399,36 @@
                         </select>
                     </div>
                     <div id="stats-bar">
-                        <div class="stat-cell"><div class="stat-val" id="total-count">—</div><div class="stat-label">Tracts</div></div>
-                        <div class="stat-cell"><div class="stat-val" id="prime-count">—</div><div class="stat-label">Prime</div></div>
-                        <div class="stat-cell"><div class="stat-val" id="avg-score">—</div><div class="stat-label">Avg Score</div></div>
-                        <div class="stat-cell"><div class="stat-val" id="states-count">—</div><div class="stat-label">States</div></div>
+                        <div class="stat-cell">
+                            <div class="stat-val" id="total-count">—</div>
+                            <div class="stat-label">Tracts</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="stat-val" id="prime-count">—</div>
+                            <div class="stat-label">Prime</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="stat-val" id="avg-score">—</div>
+                            <div class="stat-label">Avg Score</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="stat-val" id="states-count">—</div>
+                            <div class="stat-label">States</div>
+                        </div>
                     </div>
                 </div>
                 <div id="filters"></div>
                 <div id="market-list">
-                    <div class="loading"><div class="loading-spinner"></div>Loading targets...</div>
+                    <div class="loading">
+                        <div class="loading-spinner"></div>Loading targets...
+                    </div>
                 </div>
             </div>
             <div id="map-container">
                 <div id="map"></div>
                 <div class="data-source" id="data-source-label">
-                    <strong>Data:</strong> ACS 5-Year (2023) · 31 Variables · <strong>Coverage:</strong> IL, IN, WI, MI, OH, DFW-TX
+                    <strong>Data:</strong> ACS 5-Year (2023) · 31 Variables · <strong>Coverage:</strong> IL, IN, WI, MI,
+                    OH, DFW-TX
                 </div>
                 <div class="ca-comparison" id="comparison-panel">
                     <div class="ca-title">CA Portfolio Benchmark</div>
@@ -837,81 +1443,31 @@
         </div>
     </div>
 
-    <!-- METHODOLOGY OVERLAY -->
+    <!-- METHODOLOGY SLIDE-OVER -->
     <div id="methodology-overlay">
         <div id="methodology-backdrop"></div>
         <div id="methodology-panel">
             <div class="meth-header">
-                <h2>Methodology & Data Sources</h2>
+                <h2>Methodology &amp; Data Sources</h2>
                 <p>Expansion Atlas v7.1 — Technical Documentation</p>
                 <button class="meth-close" id="meth-close">&times;</button>
             </div>
-            <div class="meth-body">
-                <h3>Data Source</h3>
-                <p>All demographic data sourced from the <strong>U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates, 2023 release</strong>. Geographic coordinates from the Census Bureau Gazetteer file (2023). Coverage spans 6 states: Illinois, Indiana, Wisconsin, Michigan, Ohio, and the Dallas–Fort Worth metropolitan area (Dallas, Tarrant, Collin, Denton counties).</p>
+            <div class="meth-body" id="methodology-content"></div>
+        </div>
+    </div>
 
-                <h3>Census Variables (31 Fields)</h3>
-                <table class="meth-table">
-                    <tr><th>Category</th><th>Variables</th></tr>
-                    <tr><td>Population</td><td><code>B01003_001E</code> total pop, <code>B01002_001E</code> median age</td></tr>
-                    <tr><td>Race/Ethnicity</td><td><code>B03003_003E</code> Hispanic, <code>B02001_003E</code> Black, <code>B02001_005E</code> Asian</td></tr>
-                    <tr><td>Income/Housing</td><td><code>B19013_001E</code> med HH income, <code>B25077_001E</code> med home value</td></tr>
-                    <tr><td>Employment</td><td><code>C24010_030E/034E/066E/070E</code> blue-collar occupations</td></tr>
-                    <tr><td>Housing Tenure</td><td><code>B25003_003E/001E</code> renters, <code>B25002_003E/001E</code> vacancy</td></tr>
-                    <tr><td>Household</td><td><code>B11016_001E</code> HH size, <code>B11001_007E</code> singles, <code>B11005_001E</code> families w/ kids</td></tr>
-                    <tr><td>Commute</td><td><code>B08301_002E</code> car, <code>B08301_010E</code> transit, <code>B08301_021E</code> WFH</td></tr>
-                    <tr><td>Education</td><td><code>B15003_017E</code> HS only, <code>B15003_022E</code> bachelor's</td></tr>
-                    <tr><td>Assistance</td><td><code>B22010_002E</code> SNAP, <code>B17001_002E</code> poverty</td></tr>
-                    <tr><td>Stability</td><td><code>B07003_004E</code> same house 1yr</td></tr>
-                </table>
-
-                <h3>Demographic Scoring Model</h3>
-                <p>Each census tract is scored on a 0–100 composite index using weighted sub-scores. Weights are calibrated to match the demographic DNA of NewMark Merrill's highest-performing California properties:</p>
-                <table class="meth-table">
-                    <tr><th>Factor</th><th>Weight</th><th>Rationale</th></tr>
-                    <tr><td>Pop Density</td><td>15%</td><td>Volume business model — drives foot traffic</td></tr>
-                    <tr><td>Hispanic %</td><td>12%</td><td>Core tenant demand signal (El Super, Cardenas)</td></tr>
-                    <tr><td>Income Proximity</td><td>10%</td><td>$65K target — not too high, not too low</td></tr>
-                    <tr><td>HH Size</td><td>10%</td><td>Larger HH = higher per-trip spend on essentials</td></tr>
-                    <tr><td>Renter %</td><td>8%</td><td>Renter HH shop nearby, predictable patterns</td></tr>
-                    <tr><td>Blue Collar %</td><td>8%</td><td>Essential workforce, necessity-retail aligned</td></tr>
-                    <tr><td>SNAP Receipt</td><td>8%</td><td>Direct demand signal for discount grocery</td></tr>
-                    <tr><td>Housing Density</td><td>7%</td><td>Multi-unit = walk-in trade area density</td></tr>
-                    <tr><td>Families w/ Kids</td><td>7%</td><td>Grocery volume driver</td></tr>
-                    <tr><td>Daytime Pop Ratio</td><td>5%</td><td>Worker inflow = midday shopping boost</td></tr>
-                    <tr><td>Traffic Intensity</td><td>5%</td><td>Drive-by visibility for strip center formats</td></tr>
-                    <tr><td>Residential Stability</td><td>3%</td><td>Stable neighborhoods = recurring foot traffic</td></tr>
-                    <tr><td>Car Commute %</td><td>2%</td><td>PM commute visibility</td></tr>
-                </table>
-
-                <h3>Property Twin Analysis</h3>
-                <p>The "Property Twins" tab uses <strong>21-dimension cosine similarity</strong> to find census tracts that statistically mirror each NMM benchmark property across all demographic dimensions simultaneously. Each tract is matched to its highest-similarity benchmark and displays its top-3 matches.</p>
-
-                <div class="meth-caveat">
-                    <strong>⚠ Data Limitation:</strong> Benchmark property profiles only contain directly observed data for ~4 of 21 dimensions (Hispanic %, income, blue-collar %, population). The remaining 17 dimensions are imputed from the average of matched tracts. This means twin scores reflect <em>partial</em> similarity, not full-dimensional matching. Property-level demographic surveys of each benchmark would significantly improve accuracy.
-                </div>
-
-                <h3>Hot Zone Clustering</h3>
-                <p>Hot Zones are generated using <strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise) with <code>eps=0.05</code> (~3.5 miles) and <code>min_samples=1</code>. This groups nearby qualifying tracts into contiguous trade areas. Zone scores are the population-weighted average of constituent tract scores.</p>
-
-                <h3>Filtering Thresholds</h3>
-                <p>Tracts must pass these minimum thresholds to enter the universe:</p>
-                <table class="meth-table">
-                    <tr><th>Parameter</th><th>Threshold</th></tr>
-                    <tr><td>Population</td><td>&ge; 1,500</td></tr>
-                    <tr><td>Hispanic %</td><td>&ge; 15%</td></tr>
-                    <tr><td>Med HH Income</td><td>$35,000 – $120,000</td></tr>
-                </table>
-
-                <h3>Known Limitations</h3>
-                <p>This analysis should be used as a screening tool, not a definitive acquisition recommendation. Key gaps:</p>
-                <ul>
-                    <li><strong>No retail supply data.</strong> The model identifies demand-side demographics but does not account for existing shopping center inventory, competitive density, or vacancy rates in retail corridors.</li>
-                    <li><strong>No rent/cap rate overlay.</strong> Acquisition economics (asking rents, cap rates, asset pricing) are not incorporated.</li>
-                    <li><strong>Census tract ≠ trade area.</strong> Trade areas for shopping centers (typically 1–3 mile radius) do not align with census tract boundaries. Multiple tracts may comprise one trade area.</li>
-                    <li><strong>No population growth projections.</strong> ACS data is backward-looking. Forward-looking demand requires ESRI or similar projection sources.</li>
-                    <li><strong>Benchmark profiles are incomplete.</strong> Full 21-dimensional profiles for NMM properties require property-level demographic surveys.</li>
-                </ul>
+    <!-- WELCOME MODAL — auto-opens on first visit -->
+    <div id="welcome-overlay">
+        <div id="welcome-backdrop"></div>
+        <div id="welcome-panel">
+            <div class="welcome-header">
+                <h2>Methodology &amp; Data Sources</h2>
+                <p>Expansion Atlas v7.1 — Please review before exploring</p>
+            </div>
+            <div class="meth-body" id="welcome-content"></div>
+            <div class="welcome-footer">
+                <button class="welcome-enter" id="welcome-enter">Got It — Enter Atlas</button>
+                <div class="welcome-hint">You can revisit this anytime via the Methodology button in the top bar.</div>
             </div>
         </div>
     </div>

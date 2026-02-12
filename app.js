@@ -930,6 +930,154 @@ async function loadZoneData() {
 }
 
 // ============================================================
+// METHODOLOGY CONTENT (verified against fetch_expansion_targets.py)
+// ============================================================
+function buildMethodologyHTML() {
+    return `
+        <h3>How We Obtained This Data</h3>
+        <p>All data in the Expansion Atlas is programmatically fetched from official U.S. government sources using a Python pipeline (<code>fetch_expansion_targets.py</code>). No data is manually entered or estimated. The pipeline:</p>
+        <ol>
+            <li><strong>Census ACS API</strong> — Queries the <strong>U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates</strong> (2023 vintage) via the official Census API using the <code>census</code> Python library. Every tract-level variable is pulled directly from the API for all target geographies.</li>
+            <li><strong>Census Gazetteer File</strong> — Downloads the <strong>2023 Gazetteer tract file</strong> from <code>census.gov</code> (a ~3MB zip) to obtain tract-level land area (in square miles) and internal-point coordinates (latitude/longitude). This replaces per-tract geocoding API calls. The file is cached locally after first download.</li>
+            <li><strong>Census Geocoder</strong> — For the 9 NMM benchmark properties, the pipeline reverse-geocodes each property's lat/lng to its Census tract FIPS code using the Census Bureau's <code>geocoding.geo.census.gov</code> API, then fetches that tract's ACS data.</li>
+            <li><strong>FCC Area API</strong> — Hot Zone cluster centroids are reverse-geocoded using the FCC's <code>geo.fcc.gov/api/census/area</code> endpoint to obtain human-readable county/city/place names. No rate limits apply.</li>
+            <li><strong>Growth Trajectory</strong> — The pipeline fetches ACS data for <em>both</em> the 2023 and 2018 vintages, then calculates per-tract deltas across 8 growth metrics (Hispanic %, pop density, renter %, SNAP %, HH size, income, families with kids, stability). Deltas are normalized via percentile ranking and weighted into a composite 0–100 growth score.</li>
+        </ol>
+
+        <h3>Geographic Coverage</h3>
+        <p>The pipeline queries all tracts in <strong>5 full states</strong> (Illinois, Indiana, Wisconsin, Michigan, Ohio) plus <strong>4 DFW-area Texas counties</strong> (Dallas FIPS 113, Tarrant 439, Collin 085, Denton 121). DFW counties are specifically filtered to avoid pulling rural Texas tracts.</p>
+
+        <h3>Census Variables (31 Fields)</h3>
+        <p>Each tract pulls exactly these ACS variables, organized by category:</p>
+        <table class="meth-table">
+            <tr><th>Category</th><th>Variables</th></tr>
+            <tr><td>Population</td><td><code>B01003_001E</code> total pop, <code>B01002_001E</code> median age</td></tr>
+            <tr><td>Ethnicity</td><td><code>B03003_003E</code> Hispanic, <code>B02001_003E</code> Black, <code>B02001_005E</code> Asian</td></tr>
+            <tr><td>Income</td><td><code>B19013_001E</code> median HH income, <code>B25077_001E</code> median home value</td></tr>
+            <tr><td>Blue-Collar</td><td><code>C24010_030E</code>/<code>034E</code> male + <code>C24010_066E</code>/<code>070E</code> female natural resources, maintenance, production &amp; transport occupations</td></tr>
+            <tr><td>Employment</td><td><code>B23025_004E</code> employed, <code>B23025_005E</code> unemployed (for unemployment rate)</td></tr>
+            <tr><td>Housing Tenure</td><td><code>B25003_003E</code>/<code>001E</code> renter-occupied/total occupied, <code>B25002_003E</code>/<code>001E</code> vacant/total housing</td></tr>
+            <tr><td>Multi-Unit Housing</td><td><code>B25024_006E</code> 5–9 units, <code>007E</code> 10–19, <code>008E</code> 20–49, <code>009E</code> 50+ unit buildings</td></tr>
+            <tr><td>Household</td><td><code>B11016_001E</code>/<code>B11001_001E</code> total HH (household size), <code>B11001_007E</code> non-family (singles), <code>B11005_001E</code> HH w/ children</td></tr>
+            <tr><td>Age</td><td><code>B01001_020E</code>/<code>044E</code> male/female 65-66 (senior proxy)</td></tr>
+            <tr><td>Commute</td><td><code>B08301_002E</code> car, <code>010E</code> transit, <code>001E</code> total commuters, <code>021E</code> work from home</td></tr>
+            <tr><td>Travel Time</td><td><code>B08303_002E</code> &lt;5 min, <code>003E</code> 5–9 min (short commute / traffic proxy)</td></tr>
+            <tr><td>Education</td><td><code>B15003_017E</code> HS diploma only, <code>022E</code> bachelor's, <code>001E</code> education universe (25+)</td></tr>
+            <tr><td>Mobility</td><td><code>B07003_004E</code> same house 1yr ago, <code>001E</code> mobility universe</td></tr>
+            <tr><td>Assistance</td><td><code>B22010_002E</code> SNAP/food stamps, <code>B17001_002E</code> below poverty, <code>001E</code> poverty universe</td></tr>
+        </table>
+
+        <h3>Quality Filters — Tract Entry Thresholds</h3>
+        <p>Before scoring, the pipeline applies these filters to build the analysis universe. Tracts must pass <strong>all</strong> of the following:</p>
+        <table class="meth-table">
+            <tr><th>Parameter</th><th>Threshold</th><th>Rationale</th></tr>
+            <tr><td>Total Population</td><td>&ge; 1,500</td><td>Ensures statistical significance and sufficient consumer base</td></tr>
+            <tr><td>Hispanic %</td><td>&ge; 15%</td><td>Minimum alignment with NMM's core tenant mix</td></tr>
+            <tr><td>Median HH Income</td><td>$35,000 – $120,000</td><td>Excludes extreme poverty and ultra-affluent areas</td></tr>
+            <tr><td>Vacancy Rate</td><td>&lt; 20%</td><td>Avoids declining or unstable housing markets</td></tr>
+            <tr><td>Unemployment Rate</td><td>&lt; 15%</td><td>Avoids economically distressed areas with low spending power</td></tr>
+        </table>
+        <p>Additionally, all tracts with population &le; 1,000 or missing income data are excluded in a pre-filter step before any scoring occurs.</p>
+
+        <h3>Demographic Scoring Model (0–100 Composite)</h3>
+        <p>Each tract is scored using 13 weighted sub-scores that sum to 100 points. Each sub-score is individually normalized (0–1 scale, capped at the 95th percentile to limit outlier distortion), then multiplied by its weight. Weights are calibrated to reflect the demographic DNA of NMM's highest-performing California portfolio properties:</p>
+        <table class="meth-table">
+            <tr><th>Factor</th><th>Weight</th><th>Normalization</th><th>Rationale</th></tr>
+            <tr><td>Pop Density</td><td>18</td><td>÷ 95th percentile, capped 0–1</td><td>Volume business model — drives foot traffic</td></tr>
+            <tr><td>Hispanic %</td><td>15</td><td>Raw %, clipped 0–1</td><td>Core tenant demand signal (El Super, Cardenas)</td></tr>
+            <tr><td>Income Proximity</td><td>12</td><td>1 – |income − $65K| / $65K</td><td>$65K target — penalizes deviation in either direction</td></tr>
+            <tr><td>HH Size</td><td>10</td><td>÷ 95th percentile, capped 0–1</td><td>Larger HH = higher per-trip spend on essentials</td></tr>
+            <tr><td>Renter %</td><td>8</td><td>Raw %, clipped 0–1</td><td>Renter HH shop nearby, predictable patterns</td></tr>
+            <tr><td>Blue Collar %</td><td>8</td><td>÷ 95th percentile, capped 0–1</td><td>Essential workforce, necessity-retail aligned</td></tr>
+            <tr><td>SNAP Receipt</td><td>8</td><td>÷ 95th percentile, capped 0–1</td><td>Direct demand signal for discount grocery</td></tr>
+            <tr><td>Housing Density</td><td>5</td><td>÷ 95th percentile, capped 0–1</td><td>Multi-unit = walk-in trade area density</td></tr>
+            <tr><td>Families w/ Kids</td><td>5</td><td>Clipped 0–0.5, then ×2</td><td>Grocery volume driver</td></tr>
+            <tr><td>Daytime Pop Ratio</td><td>4</td><td>(ratio − 0.5) / 0.5, capped 0–1</td><td>Worker inflow = midday shopping boost</td></tr>
+            <tr><td>Traffic Intensity</td><td>3</td><td>÷ 95th percentile, capped 0–1</td><td>Drive-by visibility for strip center formats</td></tr>
+            <tr><td>Residential Stability</td><td>2</td><td>Raw %, clipped 0–1</td><td>Stable neighborhoods = recurring foot traffic</td></tr>
+            <tr><td>Car Commute %</td><td>2</td><td>Raw %, clipped 0–1</td><td>PM commute visibility</td></tr>
+        </table>
+
+        <h3>Growth Trajectory (2018 → 2023 Delta Analysis)</h3>
+        <p>The pipeline fetches ACS data for <em>both</em> the 2023 and 2018 vintages, matched by FIPS code. For each of 8 growth metrics, it computes the raw delta (2023 value − 2018 value), then normalizes each delta to a 0–1 scale using percentile-based ranking (5th–95th range). Sub-scores are weighted and combined into a 0–100 composite growth score:</p>
+        <table class="meth-table">
+            <tr><th>Growth Metric</th><th>Weight</th><th>Favorable Direction</th></tr>
+            <tr><td>Hispanic %</td><td>20</td><td>↑ Growing</td></tr>
+            <tr><td>Pop Density</td><td>20</td><td>↑ Growing</td></tr>
+            <tr><td>Renter %</td><td>15</td><td>↑ Growing</td></tr>
+            <tr><td>SNAP %</td><td>10</td><td>↑ Growing</td></tr>
+            <tr><td>HH Size</td><td>10</td><td>↑ Growing</td></tr>
+            <tr><td>Median Income</td><td>10</td><td>↑ Growing</td></tr>
+            <tr><td>Families w/ Kids</td><td>10</td><td>↑ Growing</td></tr>
+            <tr><td>Stability</td><td>5</td><td>↑ Growing</td></tr>
+        </table>
+
+        <h3>Property Twin Analysis (21-Dimension Cosine Similarity)</h3>
+        <p>The "Property Twins" tab compares every qualifying tract against 9 NMM benchmark properties using <strong>cosine similarity</strong> across exactly these 21 features:</p>
+        <table class="meth-table">
+            <tr><th>#</th><th>Feature</th><th>#</th><th>Feature</th></tr>
+            <tr><td>1</td><td>Hispanic %</td><td>12</td><td>Commute by Car %</td></tr>
+            <tr><td>2</td><td>Black %</td><td>13</td><td>HS Diploma Only %</td></tr>
+            <tr><td>3</td><td>Asian %</td><td>14</td><td>Bachelor's Degree %</td></tr>
+            <tr><td>4</td><td>Blue-Collar Density</td><td>15</td><td>Unemployment %</td></tr>
+            <tr><td>5</td><td>Housing Density</td><td>16</td><td>Pop Density (per sq mi)</td></tr>
+            <tr><td>6</td><td>Singles %</td><td>17</td><td>Avg HH Size</td></tr>
+            <tr><td>7</td><td>Income (log-transformed)</td><td>18</td><td>SNAP %</td></tr>
+            <tr><td>8</td><td>Renter %</td><td>19</td><td>Poverty %</td></tr>
+            <tr><td>9</td><td>Vacancy %</td><td>20</td><td>Daytime Pop Ratio</td></tr>
+            <tr><td>10</td><td>Families w/ Kids %</td><td>21</td><td>Traffic Intensity</td></tr>
+            <tr><td>11</td><td>Residential Stability %</td><td></td><td></td></tr>
+        </table>
+        <p><strong>Process:</strong> All 21 features for both benchmarks and target tracts are normalized together using <strong>MinMaxScaler</strong> (scikit-learn) to the 0–1 range before computing cosine similarity. Each tract receives its <strong>top-3</strong> benchmark matches. Only tracts with &ge; 70% similarity to at least one benchmark are included in the results.</p>
+
+        <div class="meth-caveat">
+            <strong>⚠ Data Limitation:</strong> Benchmark property profiles are built from the Census tract where each property is physically located. The tract demographics serve as a proxy for the property's actual customer base. True property-level trade area analysis (e.g., using mobile device data or loyalty card data) would provide a more precise customer demographic profile for each benchmark.
+        </div>
+
+        <h3>The 9 NMM Benchmark Properties</h3>
+        <table class="meth-table">
+            <tr><th>Property</th><th>Type</th></tr>
+            <tr><td>Bristol Warner (Santa Ana)</td><td>Hispanic Value</td></tr>
+            <tr><td>Anaheim Town Square</td><td>Hispanic Value</td></tr>
+            <tr><td>El Cajon Town &amp; Country</td><td>Hispanic Value</td></tr>
+            <tr><td>Winston Plaza (Melrose)</td><td>Urban Core</td></tr>
+            <tr><td>Bricktown Square</td><td>Urban Core</td></tr>
+            <tr><td>Stratford Crossing</td><td>Suburban Power</td></tr>
+            <tr><td>Marketplace 99 (Elk Grove)</td><td>Suburban Power</td></tr>
+            <tr><td>Madison Marketplace</td><td>Suburban Power</td></tr>
+            <tr><td>Lake Meadows (Chicago)</td><td>Urban Redevelopment</td></tr>
+        </table>
+
+        <h3>Hot Zone Clustering (DBSCAN)</h3>
+        <p>Hot Zones group nearby qualifying tracts into contiguous trade areas using <strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise) from scikit-learn:</p>
+        <table class="meth-table">
+            <tr><th>Parameter</th><th>Value</th><th>Meaning</th></tr>
+            <tr><td><code>eps</code></td><td>0.05 (~3.5 miles)</td><td>Maximum distance between two tracts to be in the same cluster</td></tr>
+            <tr><td><code>min_samples</code></td><td>2</td><td>Minimum tracts needed to form a multi-tract cluster</td></tr>
+        </table>
+        <p>Unclustered tracts (DBSCAN label = −1) are promoted to individual "micro zones" so no qualifying tract is excluded. Zone names come from the FCC Area API reverse-geocode of each cluster's centroid. Zone scores are the mean of constituent tract scores.</p>
+        <p>Zones are classified by total combined population:</p>
+        <table class="meth-table">
+            <tr><th>Size Class</th><th>Population</th></tr>
+            <tr><td>Mega Zone</td><td>&gt; 30,000</td></tr>
+            <tr><td>Large Zone</td><td>&gt; 15,000</td></tr>
+            <tr><td>Medium Zone</td><td>&gt; 8,000</td></tr>
+            <tr><td>Micro Zone</td><td>&le; 8,000</td></tr>
+        </table>
+
+        <h3>Known Limitations</h3>
+        <p>This analysis should be used as a screening tool, not a definitive acquisition recommendation:</p>
+        <ul>
+            <li><strong>No retail supply data.</strong> The model identifies demand-side demographics but does not account for existing shopping center inventory, competitive density, or vacancy rates in retail corridors.</li>
+            <li><strong>No rent/cap rate overlay.</strong> Acquisition economics (asking rents, cap rates, asset pricing) are not incorporated.</li>
+            <li><strong>Census tract ≠ trade area.</strong> Shopping center trade areas (typically 1–3 mile radius) do not align with census tract boundaries. Multiple tracts may comprise one trade area.</li>
+            <li><strong>ACS is backward-looking.</strong> The 2023 ACS 5-Year Estimates represent averages over 2019–2023. Forward-looking demand projections require ESRI or similar proprietary sources.</li>
+            <li><strong>Anchor tenant suggestions are rule-based.</strong> Tenant fits shown on cards (e.g., "El Super, Ross") are derived from simple Hispanic % thresholds, not from actual leasing data or market studies.</li>
+        </ul>
+    `;
+}
+
+// ============================================================
 // INIT
 // ============================================================
 Promise.all([loadDemoData(), loadTwinData(), loadZoneData()]).then(([demo, twins, zones]) => {
@@ -975,4 +1123,37 @@ Promise.all([loadDemoData(), loadTwinData(), loadZoneData()]).then(([demo, twins
     // Heatmap toggle
     const heatBtn = document.getElementById('heatmap-toggle');
     if (heatBtn) heatBtn.addEventListener('click', toggleHeatmap);
+
+    // ── Methodology Content ──
+    const methHTML = buildMethodologyHTML();
+    const methContent = document.getElementById('methodology-content');
+    const welcomeContent = document.getElementById('welcome-content');
+    if (methContent) methContent.innerHTML = methHTML;
+    if (welcomeContent) welcomeContent.innerHTML = methHTML;
+
+    // Methodology slide-over toggle (topbar button)
+    const methOverlay = document.getElementById('methodology-overlay');
+    document.getElementById('btn-methodology').addEventListener('click', () => {
+        methOverlay.classList.add('open');
+    });
+    document.getElementById('meth-close').addEventListener('click', () => {
+        methOverlay.classList.remove('open');
+    });
+    document.getElementById('methodology-backdrop').addEventListener('click', () => {
+        methOverlay.classList.remove('open');
+    });
+
+    // Welcome modal — auto-open once per session
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    if (!sessionStorage.getItem('atlas-meth-seen')) {
+        welcomeOverlay.classList.add('open');
+    }
+    document.getElementById('welcome-enter').addEventListener('click', () => {
+        welcomeOverlay.classList.remove('open');
+        sessionStorage.setItem('atlas-meth-seen', '1');
+    });
+    document.getElementById('welcome-backdrop').addEventListener('click', () => {
+        welcomeOverlay.classList.remove('open');
+        sessionStorage.setItem('atlas-meth-seen', '1');
+    });
 });
