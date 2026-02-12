@@ -1031,7 +1031,7 @@ function buildMethodologyHTML() {
         <p><strong>Process:</strong> All 21 features for both benchmarks and target tracts are normalized together using <strong>MinMaxScaler</strong> (scikit-learn) to the 0–1 range before computing cosine similarity. Each tract receives its <strong>top-3</strong> benchmark matches. Only tracts with &ge; 70% similarity to at least one benchmark are included in the results.</p>
 
         <div class="meth-caveat">
-            <strong>⚠ Data Limitation:</strong> Benchmark property profiles are built from the Census tract where each property is physically located. The tract demographics serve as a proxy for the property's actual customer base. True property-level trade area analysis (e.g., using mobile device data or loyalty card data) would provide a more precise customer demographic profile for each benchmark.
+            <strong>✅ Fully Calibrated:</strong> Each benchmark property is reverse-geocoded to its Census tract via the Census Geocoder API, and all 21 twin features are computed from actual ACS 5-Year data — the same source and methodology used for target tracts. No dimensions are estimated or imputed. The remaining proxy is that Census tract demographics represent the tract where the property sits, not a true trade-area analysis (e.g., using mobile device or loyalty card data).
         </div>
 
         <h3>The 9 NMM Benchmark Properties</h3>
