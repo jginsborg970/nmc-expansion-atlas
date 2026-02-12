@@ -5,12 +5,9 @@ const PORT = process.env.PORT || 3000;
 
 // Serve static files from the current directory
 app.use(express.static(path.join(__dirname), {
-    maxAge: '1h',
     setHeaders: (res, filePath) => {
-        // JSON data files should not be cached aggressively
-        if (filePath.endsWith('.json')) {
-            res.setHeader('Cache-Control', 'public, max-age=300'); // 5 min
-        }
+        // No caching during development
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 }));
 
