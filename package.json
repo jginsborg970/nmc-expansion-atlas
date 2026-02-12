@@ -1,0 +1,17 @@
+{
+  "name": "nmc-expansion-atlas",
+  "version": "7.1.0",
+  "description": "NewMark Merrill Expansion Atlas — Midwest & DFW Demographic Targeting",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}
